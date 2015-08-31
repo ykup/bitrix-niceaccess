@@ -1,0 +1,20 @@
+{
+  "name": "notamedia/bitrix-niceaccess",
+  "description": "",
+  "keywords": ["bitrix", "module"],
+  "homepage": "https://github.com/notamedia/bitrix-niceaccess",
+  "type": "bitrix-module",
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/notamedia/bitrix-niceaccess/issues",
+    "source": "https://github.com/notamedia/bitrix-niceaccess"
+  },
+  "extra": {
+    "installer-name": "notamedia.niceaccess"
+  },
+  "require": {
+    "php":">=5.4.0",
+    "composer/installers": "~1",
+    "bitrix-expert/tools": "0.*"
+  }
+}
