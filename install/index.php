@@ -38,7 +38,7 @@ class notamedia_niceaccess extends CModule
     {
         global $APPLICATION;
 
-        if (version_compare(SM_VERSION, '16.0.2') < 0)
+        if (version_compare(SM_VERSION, '15.0.2') < 0)
         {
             $APPLICATION->ThrowException(GetMessage('NOTA_NICEACCESS_INSTALL_ERROR_BITRIX_VERSION_MESSAGE'));
         }
