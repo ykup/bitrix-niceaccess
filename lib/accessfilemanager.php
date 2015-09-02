@@ -6,6 +6,11 @@
 
 namespace Notamedia\Niceaccess;
 
+/**
+ * Implements replacement of user group id's by \Bex\Tools method
+ * which returns user group id by symbol code in .access.php files.
+ * .access.php will not depend on DB user group id after that
+ */
 class AccessFileManager
 {
     protected $path;

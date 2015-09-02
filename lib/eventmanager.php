@@ -10,6 +10,9 @@ use Bitrix\Main\Localization\Loc;
 
 Loc::loadMessages(__FILE__);
 
+/**
+ * Forbids to save user group without symbol code and watches if access file was changed
+ */
 class EventManager
 {
     public static function onBeforeChangeFile($abs_path, &$strContent)
