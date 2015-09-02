@@ -29,9 +29,12 @@ class AccessFileManager
         $fileName = '.access.php';
         if(strlen($this->path) >= strlen($fileName) && substr($this->path, -strlen($fileName)) == $fileName)
         {
-            // @todo Пересохраняем файл .access.php, подменяя в нём айдишники групп пользователей
-            // @todo на метод \Bex\Tools\Groups::getId('code')
-            return $this->fileContent;
+            $this->fileContent = preg_replace_callback('/\"G[0-9]+\"/', function($matches){
+                $groupId = str_replace('G', '', trim($matches[0], "\""));
+                $groupCode = \Bex\Tools\Groups::getCode($groupId);
+
+                return "'G'.\Bex\Tools\Groups::getId('{$groupCode}')";
+            }, $this->fileContent);
         }
 
         return $this->fileContent;
