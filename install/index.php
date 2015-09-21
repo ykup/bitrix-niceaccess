@@ -62,6 +62,7 @@ class notamedia_niceaccess extends CModule
             return true;
         }
 
+        $APPLICATION->IncludeAdminFile(GetMessage('NOTA_NICEACCESS_INSTALL_TITLE'), __DIR__ . '/install_error.php');
         return false;
     }
 
@@ -70,7 +71,18 @@ class notamedia_niceaccess extends CModule
      */
     protected function getGroupsWithoutCodes()
     {
-        // @todo Найти группы пользователей без символьного кода и вернуть ХТМЛ-строку с ссылками на них
+        $rsGroups = \CGroup::GetList();
+
+        while($arGroup = $rsGroups->Fetch())
+        {
+            if(!$arGroup['STRING_ID'])
+            {
+                $arGroups[] = "<a href='/bitrix/admin/group_edit.php?ID={$arGroup['ID']}'>{$arGroup['NAME']}</a>";
+            }
+        }
+
+        if($arGroups)
+            return implode("<br>", $arGroups);
 
         return null;
     }
@@ -81,10 +93,10 @@ class notamedia_niceaccess extends CModule
 
         $manager->registerEventHandler(
             'main',
-            'OnChangePermissions',
+            'OnBeforeChangeFile',
             $this->MODULE_ID,
             '\Notamedia\Niceaccess\EventManager',
-            'onChangePermissions'
+            'onBeforeChangeFile'
         );
 
         $manager->registerEventHandler(
@@ -117,10 +129,10 @@ class notamedia_niceaccess extends CModule
 
         $manager->unRegisterEventHandler(
             'main',
-            'OnChangePermissions',
+            'OnBeforeChangeFile',
             $this->MODULE_ID,
             '\Notamedia\Niceaccess\EventManager',
-            'onChangePermissions'
+            'onBeforeChangeFile'
         );
 
         $manager->unRegisterEventHandler(

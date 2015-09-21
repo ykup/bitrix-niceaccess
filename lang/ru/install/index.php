@@ -7,6 +7,7 @@ $MESS['NOTA_NICEACCESS_PARTNER_URI'] = 'http://nota.media';
 $MESS['NOTA_NICEACCESS_INSTALL_TITLE'] = 'Установка Niceaccess';
 $MESS['NOTA_NICEACCESS_INSTALL_COMPLETE_TITLE'] = 'Установка завершена';
 $MESS['NOTA_NICEACCESS_INSTALL_COMPLETE_MESSAGE'] = 'Теперь файлы .access.php будут актуальны на всех площадках проекта';
+$MESS['NOTA_NICEACCESS_INSTALL_ERROR_MESSAGE'] = 'Модуль не был установлен';
 $MESS['NOTA_NICEACCESS_INSTALL_LINK_BACK_SOLUTIONS'] = 'Вернуться к списку решений';
 
 $MESS['NOTA_NICEACCESS_INSTALL_ERROR_BITRIX_VERSION_MESSAGE'] = 'У вас старая версия Битрикса. Для продолжения установки обновите систему и заново запустите установку Niceaccess.';
