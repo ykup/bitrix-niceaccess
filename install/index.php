@@ -42,7 +42,7 @@ class notamedia_niceaccess extends CModule
         {
             $APPLICATION->ThrowException(GetMessage('NOTA_NICEACCESS_INSTALL_ERROR_BITRIX_VERSION_MESSAGE'));
         }
-        elseif (!class_exists('\Bex\Tools\Groups'))
+        elseif (!class_exists('\Bex\Tools\GroupTools'))
         {
             $APPLICATION->ThrowException(GetMessage('NOTA_NICEACCESS_INSTALL_ERROR_GROUPS_LIB_MESSAGE'));
         }
