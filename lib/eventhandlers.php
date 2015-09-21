@@ -13,11 +13,11 @@ Loc::loadMessages(__FILE__);
 /**
  * Forbids to save user group without symbol code and watches if access file was changed
  */
-class EventManager
+class EventHandlers
 {
-    public static function onBeforeChangeFile($abs_path, &$strContent)
+    public static function onBeforeChangeFile($path, &$strContent)
     {
-        $accessFileManager = new AccessFileManager($abs_path, $strContent);
+        $accessFileManager = new AccessFileManager($path, $strContent);
 
         $strContent = $accessFileManager->replaceFileAccessContent();
 
@@ -28,9 +28,10 @@ class EventManager
     {
         global $APPLICATION;
 
-        if(empty($fields['STRING_ID']))
+        if (empty($fields['STRING_ID']))
         {
             $APPLICATION->ThrowException(Loc::getMessage('NOTA_NICEACCESS_GROUP_CODE_ERROR_MESSAGE'));
+
             return false;
         }
     }
@@ -39,9 +40,10 @@ class EventManager
     {
         global $APPLICATION;
 
-        if(empty($fields['STRING_ID']))
+        if (empty($fields['STRING_ID']))
         {
             $APPLICATION->ThrowException(Loc::getMessage('NOTA_NICEACCESS_GROUP_CODE_ERROR_MESSAGE'));
+
             return false;
         }
     }

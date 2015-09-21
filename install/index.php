@@ -63,6 +63,7 @@ class notamedia_niceaccess extends CModule
         }
 
         $APPLICATION->IncludeAdminFile(GetMessage('NOTA_NICEACCESS_INSTALL_TITLE'), __DIR__ . '/install_error.php');
+
         return false;
     }
 
@@ -73,16 +74,18 @@ class notamedia_niceaccess extends CModule
     {
         $rsGroups = \CGroup::GetList();
 
-        while($arGroup = $rsGroups->Fetch())
+        while ($group = $rsGroups->Fetch())
         {
-            if(!$arGroup['STRING_ID'])
+            if (!$group['STRING_ID'])
             {
-                $arGroups[] = "<a href='/bitrix/admin/group_edit.php?ID={$arGroup['ID']}'>{$arGroup['NAME']}</a>";
+                $groups[] = "<a href='/bitrix/admin/group_edit.php?ID={$group['ID']}'>{$group['NAME']}</a>";
             }
         }
 
-        if($arGroups)
-            return implode("<br>", $arGroups);
+        if ($groups)
+        {
+            return implode('<br>', $groups);
+        }
 
         return null;
     }
@@ -95,7 +98,7 @@ class notamedia_niceaccess extends CModule
             'main',
             'OnBeforeChangeFile',
             $this->MODULE_ID,
-            '\Notamedia\Niceaccess\EventManager',
+            '\Notamedia\Niceaccess\EventHandlers',
             'onBeforeChangeFile'
         );
 
@@ -103,7 +106,7 @@ class notamedia_niceaccess extends CModule
             'main',
             'OnBeforeGroupAdd',
             $this->MODULE_ID,
-            '\Notamedia\Niceaccess\EventManager',
+            '\Notamedia\Niceaccess\EventHandlers',
             'onBeforeGroupAdd'
         );
 
@@ -111,7 +114,7 @@ class notamedia_niceaccess extends CModule
             'main',
             'OnBeforeGroupUpdate',
             $this->MODULE_ID,
-            '\Notamedia\Niceaccess\EventManager',
+            '\Notamedia\Niceaccess\EventHandlers',
             'onBeforeGroupUpdate'
         );
     }
@@ -131,7 +134,7 @@ class notamedia_niceaccess extends CModule
             'main',
             'OnBeforeChangeFile',
             $this->MODULE_ID,
-            '\Notamedia\Niceaccess\EventManager',
+            '\Notamedia\Niceaccess\EventHandlers',
             'onBeforeChangeFile'
         );
 
@@ -139,7 +142,7 @@ class notamedia_niceaccess extends CModule
             'main',
             'OnBeforeGroupAdd',
             $this->MODULE_ID,
-            '\Notamedia\Niceaccess\EventManager',
+            '\Notamedia\Niceaccess\EventHandlers',
             'onBeforeGroupAdd'
         );
 
@@ -147,7 +150,7 @@ class notamedia_niceaccess extends CModule
             'main',
             'OnBeforeGroupUpdate',
             $this->MODULE_ID,
-            '\Notamedia\Niceaccess\EventManager',
+            '\Notamedia\Niceaccess\EventHandlers',
             'onBeforeGroupUpdate'
         );
     }
