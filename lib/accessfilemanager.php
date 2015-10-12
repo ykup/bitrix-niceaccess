@@ -6,7 +6,7 @@
 
 namespace Notamedia\Niceaccess;
 
-use Bex\Tools\GroupTools;
+use \Bex\Tools\Group\GroupTools;
 
 /**
  * Implements replacement of user group id's by \Bex\Tools method which returns user group id by symbol code
@@ -40,9 +40,9 @@ class AccessFileManager
             {
                 $matches[2] = trim($matches[2], "\"");
                 $groupId = str_replace('G', '', $matches[2], $addG);
-                $groupCode = GroupTools::getCode($groupId);
+                $groupCode = GroupTools::findById($groupId)->code();
 
-                return $matches[1] . ($addG ? "'G'." : '') . "\Bex\Tools\GroupTools::getId('{$groupCode}')" . $matches[3];
+                return $matches[1] . ($addG ? "'G'." : '') . "\Bex\Tools\Group\GroupTools::find('{$groupCode}')->id()" . $matches[3];
             }, $this->fileContent);
         }
 

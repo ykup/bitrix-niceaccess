@@ -42,7 +42,7 @@ class notamedia_niceaccess extends CModule
         {
             $APPLICATION->ThrowException(GetMessage('NOTA_NICEACCESS_INSTALL_ERROR_BITRIX_VERSION_MESSAGE'));
         }
-        elseif (!class_exists('\Bex\Tools\GroupTools'))
+        elseif (!class_exists('\Bex\Tools\Group\GroupTools'))
         {
             $APPLICATION->ThrowException(GetMessage('NOTA_NICEACCESS_INSTALL_ERROR_GROUPS_LIB_MESSAGE'));
         }
@@ -101,22 +101,6 @@ class notamedia_niceaccess extends CModule
             '\Notamedia\Niceaccess\EventHandlers',
             'onBeforeChangeFile'
         );
-
-        $manager->registerEventHandler(
-            'main',
-            'OnBeforeGroupAdd',
-            $this->MODULE_ID,
-            '\Notamedia\Niceaccess\EventHandlers',
-            'onBeforeGroupAdd'
-        );
-
-        $manager->registerEventHandler(
-            'main',
-            'OnBeforeGroupUpdate',
-            $this->MODULE_ID,
-            '\Notamedia\Niceaccess\EventHandlers',
-            'onBeforeGroupUpdate'
-        );
     }
 
     public function DoUninstall()
@@ -136,22 +120,6 @@ class notamedia_niceaccess extends CModule
             $this->MODULE_ID,
             '\Notamedia\Niceaccess\EventHandlers',
             'onBeforeChangeFile'
-        );
-
-        $manager->unRegisterEventHandler(
-            'main',
-            'OnBeforeGroupAdd',
-            $this->MODULE_ID,
-            '\Notamedia\Niceaccess\EventHandlers',
-            'onBeforeGroupAdd'
-        );
-
-        $manager->unRegisterEventHandler(
-            'main',
-            'OnBeforeGroupUpdate',
-            $this->MODULE_ID,
-            '\Notamedia\Niceaccess\EventHandlers',
-            'onBeforeGroupUpdate'
         );
     }
 }
